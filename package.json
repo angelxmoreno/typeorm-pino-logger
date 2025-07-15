@@ -35,7 +35,7 @@
     },
     "homepage": "https://github.com/angelxmoreno/typeorm-pino-logger#readme",
     "scripts": {
-        "prebuild": "bun clean",
+        "prebuild": "bun run clean",
         "build": "tsup src/index.ts --format cjs,esm --dts --clean --sourcemap",
         "clean": "rm -rf dist",
         "prepublishOnly": "bun run build",

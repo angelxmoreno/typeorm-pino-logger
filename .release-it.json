@@ -17,8 +17,8 @@
         }
     },
     "hooks": {
-        "before:init": ["bun run lint", "bun run check-types", "bun test"],
-        "before:stage": ["bun run lint:fix"]
+        "before:init": ["bun run lint:fix", "bun run lint", "bun run check-types", "bun test"],
+        "after:bump": ["bun run lint:fix"]
     },
     "increment": "conventional"
 }

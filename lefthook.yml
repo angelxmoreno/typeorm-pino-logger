@@ -2,17 +2,16 @@ pre-commit:
   parallel: true
   commands:
     lint:
-      run: bun run lint
+      run: bunx biome check {staged_files}
       skip:
         - merge
         - rebase
-      files: git diff --name-only HEAD
+      glob: "*.{js,ts,jsx,tsx,json}"
     types:
       run: bun run check-types
       skip:
         - merge
         - rebase
-      files: git diff --name-only HEAD
 commit-msg:
   parallel: true
   commands:
