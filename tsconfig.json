@@ -7,12 +7,6 @@
         "moduleDetection": "force",
         "allowJs": true,
 
-        // Output configuration
-        "outDir": "./dist",
-        "declaration": true,
-        "sourceMap": true,
-        "removeComments": true,
-
         // Module resolution
         "moduleResolution": "bundler",
         "allowImportingTsExtensions": true,
