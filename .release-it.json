@@ -1,0 +1,24 @@
+{
+    "git": {
+        "commitMessage": "chore: release v${version}",
+        "tagName": "v${version}",
+        "requireCleanWorkingDir": true
+    },
+    "github": {
+        "release": true
+    },
+    "npm": {
+        "publish": true
+    },
+    "plugins": {
+        "@release-it/conventional-changelog": {
+            "preset": "angular",
+            "infile": "CHANGELOG.md"
+        }
+    },
+    "hooks": {
+        "before:init": ["bun run lint", "bun run check-types", "bun test"],
+        "before:stage": ["bun run lint:fix"]
+    },
+    "increment": "conventional"
+}
