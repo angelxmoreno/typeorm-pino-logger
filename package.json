@@ -60,8 +60,8 @@
         "typescript": "^5.0.0"
     },
     "peerDependencies": {
-        "pino": "^8.0.0",
-        "typeorm": "^0.3.0"
+        "pino": "^9.7.0",
+        "typeorm": "^0.3.25"
     },
     "commitlint": {
         "extends": [
