@@ -1,7 +1,7 @@
 {
     "name": "typeorm-pino-logger",
     "version": "0.0.0",
-    "description": "A Pino logger adapter for TypeORM",
+    "description": "High-performance logging for TypeORM with Pino",
     "type": "module",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -45,7 +45,10 @@
         "lint:fix": "biome check --write",
         "test": "bun test",
         "test:watch": "bun test --watch",
-        "test:coverage": "bun test --coverage"
+        "test:coverage": "bun test --coverage",
+        "docs:start": "cd docs && bun start",
+        "docs:build": "cd docs && bun build",
+        "docs:serve": "cd docs && bun serve"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.1.1",
