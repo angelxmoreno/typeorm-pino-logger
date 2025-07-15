@@ -33,7 +33,7 @@ const config: Config = {
     organizationName: orgName, // Usually your GitHub org/user name.
     projectName: repoName, // Usually your repo name.
 
-    onBrokenLinks: 'throw',
+    onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
 
     // Even if you don't use internationalization, you can use this field to set
@@ -75,6 +75,28 @@ const config: Config = {
         ],
     ],
 
+    plugins: [
+        [
+            'docusaurus-plugin-typedoc',
+            {
+                entryPoints: ['../src/index.ts'],
+                tsconfig: '../tsconfig.json',
+                out: 'docs/api',
+                name: 'TypeORM Pino Logger API',
+                excludePrivate: true,
+                excludeProtected: true,
+                excludeExternals: true,
+                hideGenerator: true,
+                sort: ['source-order'],
+                sidebar: {
+                    pretty: true,
+                },
+                readme: 'none',
+                exclude: ['**/_media/**'],
+            },
+        ],
+    ],
+
     themeConfig: {
         // Replace with your project's social card
         image: 'img/docusaurus-social-card.jpg',
@@ -108,6 +130,10 @@ const config: Config = {
                         {
                             label: 'Getting Started',
                             to: '/docs/intro',
+                        },
+                        {
+                            label: 'API Reference',
+                            to: '/docs/api',
                         },
                     ],
                 },

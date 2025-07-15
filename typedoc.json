@@ -1,0 +1,14 @@
+{
+    "entryPoints": ["src/index.ts"],
+    "out": "docs/docs/api",
+    "name": "TypeORM Pino Logger API",
+    "readme": "none",
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "excludeExternals": true,
+    "hideGenerator": true,
+    "sort": ["source-order"],
+    "kindSortOrder": ["Class", "Constructor", "Property", "Method", "Interface", "TypeAlias", "Variable", "Function"],
+    "categorizeByGroup": false,
+    "defaultCategory": "Other"
+}

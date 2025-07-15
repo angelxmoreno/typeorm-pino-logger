@@ -47,7 +47,7 @@
         "test:watch": "bun test --watch",
         "test:coverage": "bun test --coverage",
         "docs:start": "cd docs && bun start",
-        "docs:build": "cd docs && bun build",
+        "docs:build": "cd docs && bun run build",
         "docs:serve": "cd docs && bun serve"
     },
     "devDependencies": {
@@ -60,6 +60,8 @@
         "lefthook": "^1.12.2",
         "release-it": "^19.0.3",
         "tsup": "^8.5.0",
+        "typedoc": "^0.26.11",
+        "typedoc-plugin-markdown": "^4.3.2",
         "typescript": "^5.0.0"
     },
     "peerDependencies": {
