@@ -91,6 +91,13 @@ const config: Config = {
                 filename: 'sitemap.xml',
             },
         ],
+        [
+            '@docusaurus/plugin-google-gtag',
+            {
+                trackingID: 'G-C67KRC11CT', // the GA4 measurement ID
+                anonymizeIP: true,
+            },
+        ],
     ],
 
     themeConfig: {

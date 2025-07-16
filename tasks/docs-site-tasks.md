@@ -4,4 +4,4 @@
 - [X] improve meta descriptions
 - [X] add sitemap.xml
 - [X] ensure html rendering works
-- [ ] add google analytics 4
+- [X] add google analytics 4
