@@ -1,6 +1,6 @@
 {
     "name": "typeorm-pino-logger",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "High-performance logging for TypeORM with Pino",
     "type": "module",
     "main": "./dist/index.js",
