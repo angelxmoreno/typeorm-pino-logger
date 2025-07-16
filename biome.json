@@ -6,7 +6,7 @@
         "useIgnoreFile": false
     },
     "files": {
-        "ignoreUnknown": false,
+        "ignoreUnknown": true,
         "includes": ["**", "!**/node_modules", "!**/dist", "!**/build", "!**/.docusaurus", "!**/.idea"]
     },
     "formatter": {
