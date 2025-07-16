@@ -15,7 +15,7 @@ const _fullDocsUrl = `${baseDocsUrl}${baseDocsPath}`;
 const config: Config = {
     title: 'TypeORM Pino Logger',
     tagline: 'High-performance logging for TypeORM with Pino',
-    favicon: 'img/favicon.ico',
+    favicon: 'favicon_io/favicon.ico',
 
     // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
     future: {
@@ -86,7 +86,13 @@ const config: Config = {
 
     themeConfig: {
         // Replace with your project's social card
-        image: 'img/docusaurus-social-card.jpg',
+        metadata: [
+            { name: 'apple-touch-icon', sizes: '180x180', href: 'favicon_io/apple-touch-icon.png' },
+            { name: 'icon', type: 'image/png', sizes: '32x32', href: 'favicon_io/favicon-32x32.png' },
+            { name: 'icon', type: 'image/png', sizes: '16x16', href: 'favicon_io/favicon-16x16.png' },
+            { name: 'manifest', href: 'favicon_io/site.webmanifest' },
+        ],
+        image: 'img/typeorm-pino-logger-logo-v1.png',
         navbar: {
             title: siteName,
             logo: {
