@@ -1,6 +1,13 @@
 {
     "permissions": {
-        "allow": ["Bash(bun run:*)", "Bash(bun test:*)", "Bash(mkdir:*)", "Bash(bun add:*)", "Bash(npm info:*)"],
+        "allow": [
+            "Bash(bun run:*)",
+            "Bash(bun test:*)",
+            "Bash(mkdir:*)",
+            "Bash(bun add:*)",
+            "Bash(npm info:*)",
+            "Bash(bun list:*)"
+        ],
         "deny": []
     }
 }

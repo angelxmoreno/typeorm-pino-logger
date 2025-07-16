@@ -28,3 +28,16 @@
     --ifm-color-primary-lightest: #6a8fc5;
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Footer link improvements for better contrast */
+.footer__link-item {
+    color: #ffffff !important;
+}
+
+.footer__link-item:hover {
+    color: #4a6fa5 !important;
+}
+
+.footer__title {
+    color: #ffffff !important;
+}

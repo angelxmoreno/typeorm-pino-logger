@@ -8,9 +8,8 @@ const orgName = 'angelxmoreno';
 const repoName = 'typeorm-pino-logger';
 const baseRepoUrl = `https://github.com/${orgName}`;
 const fullRepoUrl = `${baseRepoUrl}/${repoName}`;
-const baseDocsUrl = `https://${orgName}.github.io`;
-const baseDocsPath = `/${repoName}/`;
-const _fullDocsUrl = `${baseDocsUrl}${baseDocsPath}`;
+const prodUrl = `https://typeorm-pino-logger.js.org`;
+const baseProdPath = `/`;
 
 const config: Config = {
     title: 'TypeORM Pino Logger',
@@ -23,10 +22,10 @@ const config: Config = {
     },
 
     // Set the production url of your site here
-    url: 'https://typeorm-pino-logger.js.org',
+    url: prodUrl,
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
-    baseUrl: '/',
+    baseUrl: baseProdPath,
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
@@ -82,11 +81,22 @@ const config: Config = {
                 exclude: ['**/_media/**'],
             },
         ],
+        [
+            '@docusaurus/plugin-sitemap',
+            {
+                changefreq: 'monthly',
+                priority: 0.5,
+                ignorePatterns: ['/tags/**', '/search/**'],
+                filename: 'sitemap.xml',
+            },
+        ],
     ],
 
     themeConfig: {
         // Replace with your project's social card
         metadata: [
+            { property: 'og:type', content: 'website' },
+            { name: 'google-site-verification', content: 'xWun2Ww4aJryqQXjzSbkbfCuthmkPH7NMH56cowSY6Q' },
             { name: 'apple-touch-icon', sizes: '180x180', href: 'favicon_io/apple-touch-icon.png' },
             { name: 'icon', type: 'image/png', sizes: '32x32', href: 'favicon_io/favicon-32x32.png' },
             { name: 'icon', type: 'image/png', sizes: '16x16', href: 'favicon_io/favicon-16x16.png' },
