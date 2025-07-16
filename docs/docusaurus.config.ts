@@ -54,20 +54,7 @@ const config: Config = {
                     // Remove this to remove the "edit this page" links.
                     editUrl: `${fullRepoUrl}/tree/main/docs/docs/`,
                 },
-                blog: {
-                    showReadingTime: true,
-                    feedOptions: {
-                        type: ['rss', 'atom'],
-                        xslt: true,
-                    },
-                    // Please change this to your repo.
-                    // Remove this to remove the "edit this page" links.
-                    editUrl: `${fullRepoUrl}/tree/main/docs/blog/`,
-                    // Useful options to enforce blogging best practices
-                    onInlineTags: 'warn',
-                    onInlineAuthors: 'warn',
-                    onUntruncatedBlogPosts: 'warn',
-                },
+                blog: false,
                 theme: {
                     customCss: './src/css/custom.css',
                 },
@@ -111,9 +98,8 @@ const config: Config = {
                     type: 'docSidebar',
                     sidebarId: 'tutorialSidebar',
                     position: 'left',
-                    label: 'Docs',
+                    label: 'Documentation',
                 },
-                { to: '/blog', label: 'Blog', position: 'left' },
                 {
                     href: fullRepoUrl,
                     label: 'GitHub',
@@ -134,6 +120,14 @@ const config: Config = {
                         {
                             label: 'API Reference',
                             to: '/docs/api',
+                        },
+                        {
+                            label: 'Contributing',
+                            to: '/docs/contributing',
+                        },
+                        {
+                            label: 'Changelog',
+                            to: '/docs/changelog',
                         },
                     ],
                 },
@@ -157,10 +151,6 @@ const config: Config = {
                 {
                     title: 'More',
                     items: [
-                        {
-                            label: 'Blog',
-                            to: '/blog',
-                        },
                         {
                             label: 'GitHub',
                             href: fullRepoUrl,

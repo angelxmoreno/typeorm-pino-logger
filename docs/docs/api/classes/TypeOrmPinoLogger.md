@@ -1,6 +1,6 @@
 # Class: TypeOrmPinoLogger
 
-Defined in: [TypeOrmPinoLogger.ts:5](https://github.com/angelxmoreno/typeorm-pino-logger/blob/7cef26f5356f15253ff5c6aed9151e767054a97f/src/TypeOrmPinoLogger.ts#L5)
+Defined in: [TypeOrmPinoLogger.ts:5](https://github.com/angelxmoreno/typeorm-pino-logger/blob/5436a04924a2fc93a23b9e1dc2efe220e1757d77/src/TypeOrmPinoLogger.ts#L5)
 
 ## Implements
 
@@ -12,7 +12,7 @@ Defined in: [TypeOrmPinoLogger.ts:5](https://github.com/angelxmoreno/typeorm-pin
 
 > **new TypeOrmPinoLogger**(`pinoLogger`, `options`): `TypeOrmPinoLogger`
 
-Defined in: [TypeOrmPinoLogger.ts:9](https://github.com/angelxmoreno/typeorm-pino-logger/blob/7cef26f5356f15253ff5c6aed9151e767054a97f/src/TypeOrmPinoLogger.ts#L9)
+Defined in: [TypeOrmPinoLogger.ts:9](https://github.com/angelxmoreno/typeorm-pino-logger/blob/5436a04924a2fc93a23b9e1dc2efe220e1757d77/src/TypeOrmPinoLogger.ts#L9)
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: [TypeOrmPinoLogger.ts:9](https://github.com/angelxmoreno/typeorm-pin
 
 > **logQuery**(`query`, `parameters?`, `queryRunner?`): `void`
 
-Defined in: [TypeOrmPinoLogger.ts:27](https://github.com/angelxmoreno/typeorm-pino-logger/blob/7cef26f5356f15253ff5c6aed9151e767054a97f/src/TypeOrmPinoLogger.ts#L27)
+Defined in: [TypeOrmPinoLogger.ts:27](https://github.com/angelxmoreno/typeorm-pino-logger/blob/5436a04924a2fc93a23b9e1dc2efe220e1757d77/src/TypeOrmPinoLogger.ts#L27)
 
 Logs query and parameters used in it.
 
@@ -66,7 +66,7 @@ Logs query and parameters used in it.
 
 > **logQueryError**(`error`, `query`, `parameters?`, `queryRunner?`): `void`
 
-Defined in: [TypeOrmPinoLogger.ts:44](https://github.com/angelxmoreno/typeorm-pino-logger/blob/7cef26f5356f15253ff5c6aed9151e767054a97f/src/TypeOrmPinoLogger.ts#L44)
+Defined in: [TypeOrmPinoLogger.ts:44](https://github.com/angelxmoreno/typeorm-pino-logger/blob/5436a04924a2fc93a23b9e1dc2efe220e1757d77/src/TypeOrmPinoLogger.ts#L44)
 
 Logs query that failed.
 
@@ -102,7 +102,7 @@ Logs query that failed.
 
 > **logQuerySlow**(`time`, `query`, `parameters?`, `queryRunner?`): `void`
 
-Defined in: [TypeOrmPinoLogger.ts:62](https://github.com/angelxmoreno/typeorm-pino-logger/blob/7cef26f5356f15253ff5c6aed9151e767054a97f/src/TypeOrmPinoLogger.ts#L62)
+Defined in: [TypeOrmPinoLogger.ts:62](https://github.com/angelxmoreno/typeorm-pino-logger/blob/5436a04924a2fc93a23b9e1dc2efe220e1757d77/src/TypeOrmPinoLogger.ts#L62)
 
 Logs query that is slow.
 
@@ -138,7 +138,7 @@ Logs query that is slow.
 
 > **logSchemaBuild**(`message`, `queryRunner?`): `void`
 
-Defined in: [TypeOrmPinoLogger.ts:81](https://github.com/angelxmoreno/typeorm-pino-logger/blob/7cef26f5356f15253ff5c6aed9151e767054a97f/src/TypeOrmPinoLogger.ts#L81)
+Defined in: [TypeOrmPinoLogger.ts:81](https://github.com/angelxmoreno/typeorm-pino-logger/blob/5436a04924a2fc93a23b9e1dc2efe220e1757d77/src/TypeOrmPinoLogger.ts#L81)
 
 Logs events from the schema build process.
 
@@ -166,7 +166,7 @@ Logs events from the schema build process.
 
 > **logMigration**(`message`, `queryRunner?`): `void`
 
-Defined in: [TypeOrmPinoLogger.ts:97](https://github.com/angelxmoreno/typeorm-pino-logger/blob/7cef26f5356f15253ff5c6aed9151e767054a97f/src/TypeOrmPinoLogger.ts#L97)
+Defined in: [TypeOrmPinoLogger.ts:97](https://github.com/angelxmoreno/typeorm-pino-logger/blob/5436a04924a2fc93a23b9e1dc2efe220e1757d77/src/TypeOrmPinoLogger.ts#L97)
 
 Logs events from the migration run process.
 
@@ -194,7 +194,7 @@ Logs events from the migration run process.
 
 > **log**(`level`, `message`, `queryRunner?`): `void`
 
-Defined in: [TypeOrmPinoLogger.ts:113](https://github.com/angelxmoreno/typeorm-pino-logger/blob/7cef26f5356f15253ff5c6aed9151e767054a97f/src/TypeOrmPinoLogger.ts#L113)
+Defined in: [TypeOrmPinoLogger.ts:113](https://github.com/angelxmoreno/typeorm-pino-logger/blob/5436a04924a2fc93a23b9e1dc2efe220e1757d77/src/TypeOrmPinoLogger.ts#L113)
 
 Perform logging using given logger.
 

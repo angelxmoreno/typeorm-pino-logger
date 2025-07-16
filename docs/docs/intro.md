@@ -2,46 +2,54 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Getting Started
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to **TypeORM Pino Logger** - a high-performance logging adapter that brings structured JSON logging to your TypeORM applications.
 
-## Getting Started
+## Quick Start
 
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
+### Installation
 
 ```bash
-npm init docusaurus@latest my-website classic
+bun add typeorm-pino-logger pino typeorm
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
+Or with npm/yarn:
 
 ```bash
-cd my-website
-npm run start
+npm install typeorm-pino-logger pino typeorm
+# or
+yarn add typeorm-pino-logger pino typeorm
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+### Basic Usage
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+```typescript
+import { DataSource } from 'typeorm';
+import pino from 'pino';
+import { TypeOrmPinoLogger } from 'typeorm-pino-logger';
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+const logger = pino();
+const typeormLogger = new TypeOrmPinoLogger(logger);
+
+const dataSource = new DataSource({
+  type: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  username: 'user',
+  password: 'password',
+  database: 'mydb',
+  logger: typeormLogger,
+  logging: true,
+  // ... other TypeORM options
+});
+```
+
+That's it! Your TypeORM queries will now be logged with structured JSON output.
+
+## What's Next?
+
+- [📖 **Configuration Guide**](./configuration) - Learn about all configuration options
+- [📊 **Log Output Examples**](./log-examples) - See what the logs look like
+- [🔧 **Advanced Usage**](./advanced-usage) - Advanced configuration and use cases
+- [📚 **API Reference**](./api) - Complete API documentation
