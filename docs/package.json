@@ -3,9 +3,10 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
+        "sync": "bun run scripts/file-sync/index.ts",
         "docusaurus": "docusaurus",
         "start": "docusaurus start",
-        "build": "docusaurus build",
+        "build": "bun run sync && docusaurus build",
         "swizzle": "docusaurus swizzle",
         "deploy": "docusaurus deploy",
         "clear": "docusaurus clear",
