@@ -1,0 +1,14 @@
+{
+    "root": false,
+    "extends": "//",
+    "linter": {
+        "rules": {
+            "suspicious": {
+                "noArrayIndexKey": "off"
+            },
+            "correctness": {
+                "noUnusedImports": "off"
+            }
+        }
+    }
+}

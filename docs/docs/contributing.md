@@ -1,3 +1,6 @@
+---
+sidebar_position: 6
+---
 # Contributing
 
 Thank you for your interest in contributing to TypeORM Pino Logger! This guide will help you get started.
