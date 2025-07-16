@@ -160,13 +160,183 @@ Comprehensive SEO optimization strategy for the TypeORM Pino Logger documentatio
 - [ ] **Internationalization**: Prepare for multi-language SEO if needed
 - [ ] **A/B Testing**: Set up testing for title/description optimization
 
+## Domain Migration Checklist (js.org)
+
+### ✅ **Domain Approved**: https://typeorm-pino-logger.js.org/
+
+### Configuration Updates
+- [ ] **Update Docusaurus Config**:
+  ```typescript
+  const config: Config = {
+    url: 'https://typeorm-pino-logger.js.org',
+    baseUrl: '/',
+    // Remove GitHub Pages specific settings
+  };
+  ```
+- [ ] **Update Package.json**:
+  ```json
+  {
+    "homepage": "https://typeorm-pino-logger.js.org"
+  }
+  ```
+- [ ] **Update README.md**: Replace all GitHub Pages links with js.org domain
+- [ ] **Update NPM Package**: Links in package.json should point to js.org
+- [ ] **Update Documentation**: Internal links and references
+
+### DNS & Redirects
+- [ ] **Verify DNS Propagation**: Check js.org domain is live
+- [ ] **Test All Pages**: Ensure all documentation pages load correctly
+- [ ] **301 Redirects**: Consider redirecting GitHub Pages to js.org (optional)
+- [ ] **SSL Certificate**: Verify HTTPS is working properly
+
+## Google Analytics 4 Implementation
+
+### Initial Setup
+- [ ] **Create GA4 Property**:
+  1. Go to Google Analytics → Admin → Create Property
+  2. Set property name: "TypeORM Pino Logger Docs"
+  3. Set website URL: `https://typeorm-pino-logger.js.org`
+  4. Configure data sharing settings
+
+- [ ] **Install GA4 in Docusaurus**:
+  ```typescript
+  // docusaurus.config.ts
+  plugins: [
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-XXXXXXXXXX',
+        anonymizeIP: true,
+      },
+    ],
+  ],
+  ```
+
+### Custom Events for Documentation
+- [ ] **Download Tracking**: Track npm install command copies
+- [ ] **Code Copy Events**: Track code example interactions
+- [ ] **Search Usage**: Monitor internal search queries
+- [ ] **External Link Clicks**: Track GitHub, npm, and other external links
+
+### Event Implementation Example
+```javascript
+// Track code copy events
+gtag('event', 'code_copy', {
+  event_category: 'documentation',
+  event_label: 'installation_command',
+  value: 1
+});
+
+// Track page depth
+gtag('event', 'page_view', {
+  page_title: document.title,
+  page_location: window.location.href,
+  content_group1: 'documentation'
+});
+```
+
+### Goals & Conversions
+- [ ] **Set Up Goals**:
+  - GitHub repository visits
+  - npm package page visits
+  - Documentation completion (reaching "Advanced Usage")
+  - API reference access
+
+## Comprehensive Sitemap Management
+
+### Google Search Console Setup
+- [ ] **Add New Property**:
+  1. Go to Google Search Console
+  2. Add property: `https://typeorm-pino-logger.js.org`
+  3. Verify ownership using HTML file or DNS record
+  4. Submit sitemap: `https://typeorm-pino-logger.js.org/sitemap.xml`
+
+- [ ] **Verification Methods**:
+  - HTML file upload to `/static/` directory
+  - DNS TXT record verification
+  - Google Analytics verification (if linked)
+
+### Sitemap Optimization
+- [ ] **Docusaurus Sitemap Configuration**:
+  ```typescript
+  plugins: [
+    [
+      '@docusaurus/plugin-sitemap',
+      {
+        changefreq: 'weekly',
+        priority: 0.5,
+        ignorePatterns: ['/tags/**', '/search/**'],
+        filename: 'sitemap.xml',
+      },
+    ],
+  ],
+  ```
+
+### Multi-Engine Submission
+- [ ] **Google Search Console**: Submit sitemap.xml
+- [ ] **Bing Webmaster Tools**: 
+  1. Add site: `https://typeorm-pino-logger.js.org`
+  2. Verify ownership
+  3. Submit sitemap
+- [ ] **Yandex Webmaster**: For international reach (optional)
+
+### URL Inspection & Indexing
+- [ ] **Priority Pages to Submit**:
+  - Homepage: `/`
+  - Getting Started: `/docs/intro`
+  - API Reference: `/docs/api`
+  - Configuration: `/docs/configuration`
+  - Examples: `/docs/log-examples`
+
+## Search Console Advanced Configuration
+
+### Property Setup
+- [ ] **Domain Property vs URL Prefix**:
+  - Use URL prefix: `https://typeorm-pino-logger.js.org`
+  - Covers all subdomains and protocols
+  - Easier verification for single domain
+
+### Performance Monitoring
+- [ ] **Key Metrics to Track**:
+  - Organic click-through rates
+  - Average position for target keywords
+  - Impressions for documentation-related queries
+  - Core Web Vitals scores
+
+### Search Console Alerts
+- [ ] **Set Up Alerts**:
+  - Coverage issues (404s, server errors)
+  - Manual actions or penalties
+  - Significant traffic changes
+  - Core Web Vitals degradation
+
 ## Monitoring & Analytics
 
-### Setup Tasks
+### Enhanced Analytics Setup
 - [ ] **Google Analytics 4**: Enhanced ecommerce and event tracking
 - [ ] **Google Search Console**: Monitor search performance and indexing
 - [ ] **Core Web Vitals Monitoring**: Real user monitoring setup
 - [ ] **Uptime Monitoring**: Ensure consistent availability
+
+### Documentation-Specific Metrics
+- [ ] **User Journey Analysis**:
+  - Entry pages and bounce rates
+  - Documentation completion rates
+  - Time spent on different sections
+  - Search-to-action conversion
+
+- [ ] **Content Performance**:
+  - Most accessed documentation pages
+  - Exit rates from key pages
+  - Internal search query analysis
+  - Mobile vs desktop usage patterns
+
+### Real-Time Monitoring
+- [ ] **Set Up Alerts**:
+  - Traffic anomalies
+  - Site downtime
+  - Core Web Vitals degradation
+  - Search ranking drops for key terms
 
 ### KPI Tracking
 - [ ] **Organic Traffic Growth**: Month-over-month improvements

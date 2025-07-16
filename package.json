@@ -33,7 +33,7 @@
     "bugs": {
         "url": "https://github.com/angelxmoreno/typeorm-pino-logger/issues"
     },
-    "homepage": "https://github.com/angelxmoreno/typeorm-pino-logger#readme",
+    "homepage": "https://typeorm-pino-logger.js.org",
     "scripts": {
         "prebuild": "bun run clean",
         "build": "tsup src/index.ts --format cjs,esm --dts --clean --sourcemap",
@@ -47,6 +47,7 @@
         "test:watch": "bun test --watch",
         "test:coverage": "bun test --coverage",
         "docs:sync": "cd docs && bun run sync",
+        "docs:dev": "cd docs && bun start",
         "docs:start": "cd docs && bun start",
         "docs:build": "cd docs && bun run build",
         "docs:serve": "cd docs && bun serve"

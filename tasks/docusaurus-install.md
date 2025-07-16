@@ -64,6 +64,7 @@ Add these scripts to your main `package.json`:
 ```json
 {
   "scripts": {
+    "docs:dev": "cd docs && bun start",
     "docs:start": "cd docs && bun start",
     "docs:build": "cd docs && bun build",
     "docs:serve": "cd docs && bun serve"
