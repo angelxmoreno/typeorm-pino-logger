@@ -33,7 +33,7 @@
     "bugs": {
         "url": "https://github.com/angelxmoreno/typeorm-pino-logger/issues"
     },
-    "homepage": "https://github.com/angelxmoreno/typeorm-pino-logger#readme",
+    "homepage": "https://typeorm-pino-logger.js.org",
     "scripts": {
         "prebuild": "bun run clean",
         "build": "tsup src/index.ts --format cjs,esm --dts --clean --sourcemap",
