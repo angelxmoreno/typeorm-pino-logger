@@ -5,48 +5,48 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
     title: string;
-    Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+    Src: string;
     description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
     {
-        title: 'Easy to Use',
-        Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+        title: 'High Performance Logging',
+        Src: require('@site/static/img/performance-logging.png').default,
         description: (
             <>
-                Docusaurus was designed from the ground up to be easily installed and used to get your website up and
-                running quickly.
+                Built on Pino's ultra-fast JSON logging foundation. Delivers minimal overhead and maximum throughput for
+                production applications with extensive database operations.
             </>
         ),
     },
     {
-        title: 'Focus on What Matters',
-        Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+        title: 'Seamless TypeORM Integration',
+        Src: require('@site/static/img/typeorm-integration.png').default,
         description: (
             <>
-                Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go ahead and move your docs into
-                the <code>docs</code> directory.
+                Drop-in replacement for TypeORM's default logger. Automatically captures query execution times,
+                parameters, and errors with zero configuration changes to your existing TypeORM setup.
             </>
         ),
     },
     {
-        title: 'Powered by React',
-        Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+        title: 'Structured Logging & Observability',
+        Src: require('@site/static/img/structured-logging.png').default,
         description: (
             <>
-                Extend or customize your website layout by reusing React. Docusaurus can be extended while reusing the
-                same header and footer.
+                JSON-structured output with configurable log levels, slow query detection, and rich contextual metadata.
+                Perfect for modern observability stacks and log aggregation systems.
             </>
         ),
     },
 ];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({ title, Src, description }: FeatureItem) {
     return (
         <div className={clsx('col col--4')}>
             <div className="text--center">
-                <Svg className={styles.featureSvg} role="img" />
+                <img src={Src} className={styles.featureSvg} alt={title} />
             </div>
             <div className="text--center padding-horiz--md">
                 <Heading as="h3">{title}</Heading>

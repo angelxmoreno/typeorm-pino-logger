@@ -1,6 +1,6 @@
 # Interface: TypeOrmPinoLoggerOptions
 
-Defined in: [types.ts:1](https://github.com/angelxmoreno/typeorm-pino-logger/blob/22a464f1ff66262ff025953343e01a61ddaa8bfc/src/types.ts#L1)
+Defined in: [types.ts:1](https://github.com/angelxmoreno/typeorm-pino-logger/blob/9d9dc4347bc9c21d969abdf6036c5ffc7585153e/src/types.ts#L1)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [types.ts:1](https://github.com/angelxmoreno/typeorm-pino-logger/blo
 
 > `optional` **logQueries**: `boolean`
 
-Defined in: [types.ts:5](https://github.com/angelxmoreno/typeorm-pino-logger/blob/22a464f1ff66262ff025953343e01a61ddaa8bfc/src/types.ts#L5)
+Defined in: [types.ts:5](https://github.com/angelxmoreno/typeorm-pino-logger/blob/9d9dc4347bc9c21d969abdf6036c5ffc7585153e/src/types.ts#L5)
 
 Log all queries (default: true)
 
@@ -18,7 +18,7 @@ Log all queries (default: true)
 
 > `optional` **logSlowQueries**: `boolean`
 
-Defined in: [types.ts:10](https://github.com/angelxmoreno/typeorm-pino-logger/blob/22a464f1ff66262ff025953343e01a61ddaa8bfc/src/types.ts#L10)
+Defined in: [types.ts:10](https://github.com/angelxmoreno/typeorm-pino-logger/blob/9d9dc4347bc9c21d969abdf6036c5ffc7585153e/src/types.ts#L10)
 
 Log slow queries (default: true)
 
@@ -28,7 +28,7 @@ Log slow queries (default: true)
 
 > `optional` **slowQueryThreshold**: `number`
 
-Defined in: [types.ts:15](https://github.com/angelxmoreno/typeorm-pino-logger/blob/22a464f1ff66262ff025953343e01a61ddaa8bfc/src/types.ts#L15)
+Defined in: [types.ts:15](https://github.com/angelxmoreno/typeorm-pino-logger/blob/9d9dc4347bc9c21d969abdf6036c5ffc7585153e/src/types.ts#L15)
 
 Slow query threshold in milliseconds (default: 1000)
 
@@ -38,7 +38,7 @@ Slow query threshold in milliseconds (default: 1000)
 
 > `optional` **logQueryErrors**: `boolean`
 
-Defined in: [types.ts:20](https://github.com/angelxmoreno/typeorm-pino-logger/blob/22a464f1ff66262ff025953343e01a61ddaa8bfc/src/types.ts#L20)
+Defined in: [types.ts:20](https://github.com/angelxmoreno/typeorm-pino-logger/blob/9d9dc4347bc9c21d969abdf6036c5ffc7585153e/src/types.ts#L20)
 
 Log query errors (default: true)
 
@@ -48,7 +48,7 @@ Log query errors (default: true)
 
 > `optional` **logSchemaOperations**: `boolean`
 
-Defined in: [types.ts:25](https://github.com/angelxmoreno/typeorm-pino-logger/blob/22a464f1ff66262ff025953343e01a61ddaa8bfc/src/types.ts#L25)
+Defined in: [types.ts:25](https://github.com/angelxmoreno/typeorm-pino-logger/blob/9d9dc4347bc9c21d969abdf6036c5ffc7585153e/src/types.ts#L25)
 
 Log schema operations (default: true)
 
@@ -58,7 +58,7 @@ Log schema operations (default: true)
 
 > `optional` **logMigrations**: `boolean`
 
-Defined in: [types.ts:30](https://github.com/angelxmoreno/typeorm-pino-logger/blob/22a464f1ff66262ff025953343e01a61ddaa8bfc/src/types.ts#L30)
+Defined in: [types.ts:30](https://github.com/angelxmoreno/typeorm-pino-logger/blob/9d9dc4347bc9c21d969abdf6036c5ffc7585153e/src/types.ts#L30)
 
 Log migrations (default: true)
 
@@ -68,7 +68,7 @@ Log migrations (default: true)
 
 > `optional` **maxQueryLength**: `number`
 
-Defined in: [types.ts:36](https://github.com/angelxmoreno/typeorm-pino-logger/blob/22a464f1ff66262ff025953343e01a61ddaa8bfc/src/types.ts#L36)
+Defined in: [types.ts:36](https://github.com/angelxmoreno/typeorm-pino-logger/blob/9d9dc4347bc9c21d969abdf6036c5ffc7585153e/src/types.ts#L36)
 
 Maximum length for query logging (queries longer than this will be truncated)
 
@@ -84,6 +84,6 @@ Maximum length for query logging (queries longer than this will be truncated)
 
 > `optional` **context**: `Record`\<`string`, `unknown`\>
 
-Defined in: [types.ts:41](https://github.com/angelxmoreno/typeorm-pino-logger/blob/22a464f1ff66262ff025953343e01a61ddaa8bfc/src/types.ts#L41)
+Defined in: [types.ts:41](https://github.com/angelxmoreno/typeorm-pino-logger/blob/9d9dc4347bc9c21d969abdf6036c5ffc7585153e/src/types.ts#L41)
 
 Custom context to add to all log entries
