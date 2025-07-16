@@ -81,6 +81,15 @@ const config: Config = {
                 exclude: ['**/_media/**'],
             },
         ],
+        [
+            '@docusaurus/plugin-sitemap',
+            {
+                changefreq: 'monthly',
+                priority: 0.5,
+                ignorePatterns: ['/tags/**', '/search/**'],
+                filename: 'sitemap.xml',
+            },
+        ],
     ],
 
     themeConfig: {
