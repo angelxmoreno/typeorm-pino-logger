@@ -47,7 +47,7 @@
         "test:watch": "bun test --watch",
         "test:coverage": "bun test --coverage",
         "docs:sync": "cd docs && bun run sync",
-        "docs:start": "cd docs && bun start",
+        "docs:dev": "cd docs && bun start",
         "docs:build": "cd docs && bun run build",
         "docs:serve": "cd docs && bun serve"
     },
