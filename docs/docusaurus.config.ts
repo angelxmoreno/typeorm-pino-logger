@@ -86,6 +86,7 @@ const config: Config = {
     themeConfig: {
         // Replace with your project's social card
         metadata: [
+            { property: 'og:type', content: 'website' },
             { name: 'google-site-verification', content: 'xWun2Ww4aJryqQXjzSbkbfCuthmkPH7NMH56cowSY6Q' },
             { name: 'apple-touch-icon', sizes: '180x180', href: 'favicon_io/apple-touch-icon.png' },
             { name: 'icon', type: 'image/png', sizes: '32x32', href: 'favicon_io/favicon-32x32.png' },
