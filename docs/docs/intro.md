@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Getting Started
 
-Welcome to **TypeORM Pino Logger** - a high-performance logging adapter that brings structured JSON logging to your TypeORM applications.
+Welcome to **TypeOrmPinoLogger** - a high-performance logging adapter that brings structured JSON logging to your TypeORM applications, with features like message filtering, slow query detection, and more.
 
 ## Quick Start
 
