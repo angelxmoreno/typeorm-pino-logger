@@ -569,4 +569,103 @@ describe('TypeOrmPinoLogger', () => {
             );
         });
     });
+
+    describe('messageFilter', () => {
+        it('should not log if filter returns false', () => {
+            const messageFilter = mock(() => false);
+            const logger = new TypeOrmPinoLogger(mockLogger, { messageFilter });
+
+            logger.logQuery('SELECT * FROM users');
+            logger.logQueryError('Error', 'SELECT * FROM users');
+            logger.logQuerySlow(2000, 'SELECT * FROM users');
+            logger.logSchemaBuild('Schema build message');
+            logger.logMigration('Migration message');
+            logger.log('info', 'General log message');
+
+            expect(messageFilter).toHaveBeenCalledTimes(6);
+            expect(mockLogger.debug).not.toHaveBeenCalled();
+            expect(mockLogger.error).not.toHaveBeenCalled();
+            expect(mockLogger.warn).not.toHaveBeenCalled();
+            expect(mockLogger.info).not.toHaveBeenCalled();
+        });
+
+        it('should log if filter returns true', () => {
+            const messageFilter = mock(() => true);
+            const logger = new TypeOrmPinoLogger(mockLogger, { messageFilter, slowQueryThreshold: 1000 });
+
+            logger.logQuery('SELECT * FROM users');
+            logger.logQueryError('Error', 'SELECT * FROM users');
+            logger.logQuerySlow(2000, 'SELECT * FROM users');
+            logger.logSchemaBuild('Schema build message');
+            logger.logMigration('Migration message');
+            logger.log('info', 'General log message');
+
+            expect(messageFilter).toHaveBeenCalledTimes(6);
+            expect(mockLogger.debug).toHaveBeenCalledTimes(1);
+            expect(mockLogger.error).toHaveBeenCalledTimes(1);
+            expect(mockLogger.warn).toHaveBeenCalledTimes(1);
+            expect(mockLogger.info).toHaveBeenCalledTimes(3);
+        });
+
+        it('should call filter with correct message and type', () => {
+            const messageFilter = mock(() => true);
+            const logger = new TypeOrmPinoLogger(mockLogger, { messageFilter, slowQueryThreshold: 1000 });
+
+            logger.logQuery('SELECT 1');
+            expect(messageFilter).toHaveBeenCalledWith('SELECT 1', 'query');
+
+            logger.logQueryError('Error message', 'SELECT 2');
+            expect(messageFilter).toHaveBeenCalledWith('Error message', 'query-error');
+
+            logger.logQuerySlow(1500, 'SELECT 3');
+            expect(messageFilter).toHaveBeenCalledWith('SELECT 3', 'slow-query');
+
+            logger.logSchemaBuild('Schema message');
+            expect(messageFilter).toHaveBeenCalledWith('Schema message', 'schema-build');
+
+            logger.logMigration('Migration message');
+            expect(messageFilter).toHaveBeenCalledWith('Migration message', 'migration');
+
+            logger.log('info', 'General message');
+            expect(messageFilter).toHaveBeenCalledWith('General message', 'general');
+        });
+
+        it('should not call filter if not provided', () => {
+            const logger = new TypeOrmPinoLogger(mockLogger);
+            logger.logQuery('SELECT * FROM users');
+            expect(mockLogger.debug).toHaveBeenCalled();
+        });
+
+        it('should not filter non-string messages in log method', () => {
+            const messageFilter = mock(() => false);
+            const logger = new TypeOrmPinoLogger(mockLogger, { messageFilter });
+
+            const messageObject = { custom: 'message' };
+            logger.log('info', messageObject);
+
+            expect(messageFilter).not.toHaveBeenCalled();
+            expect(mockLogger.info).toHaveBeenCalledWith(
+                expect.objectContaining({ message: messageObject }),
+                'TypeORM Log'
+            );
+        });
+
+        it('should filter out glob pattern messages', () => {
+            const globMessage = 'All classes found using provided glob pattern "/path/to/entities/*.ts"';
+            const messageFilter = (message: string, type: string) => {
+                return !(type === 'general' && message.startsWith('All classes found'));
+            };
+
+            const logger = new TypeOrmPinoLogger(mockLogger, { messageFilter });
+
+            logger.log('info', globMessage);
+            logger.log('info', 'Another message');
+
+            expect(mockLogger.info).toHaveBeenCalledTimes(1);
+            expect(mockLogger.info).toHaveBeenCalledWith(
+                expect.objectContaining({ message: 'Another message' }),
+                'TypeORM Log'
+            );
+        });
+    });
 });
