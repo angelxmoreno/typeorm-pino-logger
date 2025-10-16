@@ -1,5 +1,27 @@
 # Changelog
 
+* Merge pull request #14 from angelxmoreno/feat/filter-function (4e9c477)
+* test: added messageFilter tests (32378d1)
+* docs: updated docs to show filter messages feature (1ef7839)
+* feat(logging): add message filtering to logger (509b7f8)
+* docs: added implementation plan for issue 13 (52d457f)
+* Merge pull request #12 from angelxmoreno/docs/ga (d9f16b8)
+* docs: integrated Google Analytics (9353250)
+* Merge pull request #11 from angelxmoreno/feat/docs-site-seo2 (9ad2cf9)
+* Merge branch 'main' of github.com:angelxmoreno/typeorm-pino-logger into feat/docs-site-seo (d943a0b)
+* docs: fixed duplicate plugin definition (27174f9)
+* Merge pull request #10 from angelxmoreno/feat/docs-site-seo (6874382)
+* chore: added old run script for backwards compatibility (64448c1)
+* docs: tested html rendering and updated packages.json homepage (d540ae6)
+* docs: change sitemap changefreq value (3788dcd)
+* docs: added og:title globally and updated home page title and description (0cf25ae)
+* docs: fixed hover links in light mode (f837424)
+* docs: renamed base url variables for clarity (64f0232)
+* docs: added Google verification through metatags (ccb4277)
+* docs: added new seo tasks (080747f)
+* Merge pull request #9 from angelxmoreno/fix/docs-site-base-url (288b194)
+* fix: new domain requires new baseUrl (a51ad8e)
+
 # 0.0.0 (2025-07-16)
 
 
