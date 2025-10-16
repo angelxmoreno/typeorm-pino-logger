@@ -192,3 +192,9 @@ Results in logs like:
 ```
 
 This structured logging makes it easy to search, filter, and analyze your database operations in log aggregation systems like ELK Stack, Splunk, or cloud logging services.
+
+### Filtering Log Messages
+
+Any of the log messages shown above can be suppressed using the `messageFilter` option. This allows you to selectively hide logs that are not relevant to your application.
+
+For more information, see the [Configuration Guide](./configuration#message-filtering).

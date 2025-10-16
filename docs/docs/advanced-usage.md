@@ -389,6 +389,69 @@ class AggregatingTypeOrmPinoLogger extends TypeOrmPinoLogger {
 }
 ```
 
+## Advanced Message Filtering
+
+The `messageFilter` option can be used to implement more complex filtering logic.
+
+### Filtering by Log Type
+
+You can use the `type` argument to filter messages based on their category.
+
+```typescript
+// Only log errors and slow queries
+const typeBasedFilter: FilterFunction = (message, type) => {
+  return ['query-error', 'slow-query'].includes(type);
+};
+
+const logger = new TypeOrmPinoLogger(pino(), {
+    messageFilter: typeBasedFilter
+});
+```
+
+### Filtering Multiple Patterns
+
+Use an array of regular expressions to filter out multiple message patterns.
+
+```typescript
+const customFilter: FilterFunction = (message, type) => {
+  const suppressedPatterns = [
+    /^All classes found using provided glob pattern/,
+    /^Database schema loaded from/,
+    /^Connection established/
+  ];
+  
+  return !suppressedPatterns.some(pattern => pattern.test(message));
+};
+
+const logger = new TypeOrmPinoLogger(pino(), {
+    messageFilter: customFilter
+});
+```
+
+### Combining Content and Type Filtering
+
+You can create sophisticated rules by combining both `message` and `type`.
+
+```typescript
+const combinedFilter: FilterFunction = (message, type) => {
+  // Suppress general messages about glob patterns
+  if (type === 'general' && message.includes('glob pattern')) {
+    return false;
+  }
+  
+  // Suppress schema build messages that are not errors
+  if (type === 'schema-build' && !message.toLowerCase().includes('error')) {
+      return false;
+  }
+  
+  return true;
+};
+
+const logger = new TypeOrmPinoLogger(pino(), {
+    messageFilter: combinedFilter
+});
+```
+
 ## Testing with TypeORM Pino Logger
 
 ```typescript

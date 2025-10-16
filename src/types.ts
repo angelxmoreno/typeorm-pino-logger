@@ -1,4 +1,12 @@
+export type FilterFunction = (message: string, type: string) => boolean;
+
 export interface TypeOrmPinoLoggerOptions {
+    /**
+     * Optional filter function to control which messages are logged
+     * Return true to log the message, false to suppress it
+     */
+    messageFilter?: FilterFunction;
+
     /**
      * Log all queries (default: true)
      */

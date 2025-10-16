@@ -16,6 +16,7 @@ A [Pino](https://github.com/pinojs/pino) logger adapter for [TypeORM](https://gi
 - 🎯 Customizable context for all log entries
 - 🔧 QueryRunner context extraction (connection, database, transaction status)
 - ✂️ Automatic query truncation for large queries
+- 🤫 Message filtering to suppress unwanted logs
 - 🛡️ Type-safe implementation with TypeScript
 
 ## Quick Start
@@ -47,6 +48,27 @@ const dataSource = new DataSource({
   logging: true,
   // ... other TypeORM options
 });
+```
+
+### Usage with Message Filtering
+
+Suppress unwanted log messages, such as glob pattern discovery notices during startup:
+
+```typescript
+import { TypeOrmPinoLogger, FilterFunction } from 'typeorm-pino-logger';
+
+const filterOutGlobMessages: FilterFunction = (message, type) => {
+  if (type === 'general' && message.startsWith('All classes found using provided glob pattern')) {
+    return false; // Suppress this message
+  }
+  return true; // Log all other messages
+};
+
+const typeormLogger = new TypeOrmPinoLogger(logger, {
+  messageFilter: filterOutGlobMessages,
+});
+
+// ... then use this logger in your DataSource
 ```
 
 That's it! Your TypeORM queries will now be logged with structured JSON output.

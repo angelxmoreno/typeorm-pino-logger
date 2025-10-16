@@ -20,6 +20,7 @@ All configuration options are optional and have sensible defaults:
 | `logMigrations` | `boolean` | `true` | Log migration operations |
 | `maxQueryLength` | `number` | `1000` | Maximum length for query logging (longer queries will be truncated) |
 | `context` | `Record<string, unknown>` | `{}` | Additional context to include in all log entries |
+| `messageFilter` | `FilterFunction` | `undefined` | A function to filter log messages. Return `false` to suppress a message. |
 
 ## Basic Configuration
 
@@ -163,9 +164,45 @@ const typeormLogger = new TypeOrmPinoLogger(logger, {
   logSchemaOperations: isDevelopment,
   logMigrations: true,
   maxQueryLength: isDevelopment ? 5000 : 1000,
-  context: {
-    environment: process.env.NODE_ENV,
-    version: process.env.npm_package_version
-  }
-});
-```
+      context: {
+          environment: process.env.NODE_ENV,
+          version: process.env.npm_package_version
+      }
+  });
+  
+  ## Message Filtering
+  
+  The `messageFilter` option allows you to suppress unwanted log messages by providing a custom filter function.
+  
+  This is particularly useful for hiding verbose messages that may not be relevant in production, such as the glob pattern discovery notices that TypeORM logs during startup.
+  
+  ### `FilterFunction`
+  
+  The filter function has the following signature:
+  
+  ```typescript
+  type FilterFunction = (message: string, type: string) => boolean;
+  ```
+  
+  -   `message`: The content of the log message.
+  -   `type`: The type of the log (e.g., `'query'`, `'slow-query'`, `'general'`).
+  -   Return `false` to suppress the message, or `true` to allow it.
+  
+  ### Example: Filtering Glob Pattern Messages
+  
+  ```typescript
+  import { TypeOrmPinoLogger, FilterFunction } from 'typeorm-pino-logger';
+  
+  const filterOutGlobMessages: FilterFunction = (message, type) => {
+    if (type === 'general' && message.startsWith('All classes found using provided glob pattern')) {
+      return false; // Suppress this message
+    }
+    return true; // Log all other messages
+  };
+  
+  const typeormLogger = new TypeOrmPinoLogger(logger, {
+    messageFilter: filterOutGlobMessages,
+  });
+  
+  // ... then use this logger in your DataSource
+  ``````

@@ -2,9 +2,21 @@ import type { Logger as PinoLogger } from 'pino';
 import type { Logger, QueryRunner } from 'typeorm';
 import type { TypeOrmPinoLoggerOptions } from './types.ts';
 
+/**
+ * This type is used internally to represent the logger options after default values have been applied.
+ * It makes all properties of `TypeOrmPinoLoggerOptions` required, except for `messageFilter`.
+ * This ensures type safety within the class, as we can rely on the presence of all options except the filter.
+ *
+ * `messageFilter` is kept optional to avoid the performance overhead of a default filter function
+ * for users who do not need the filtering feature.
+ */
+type TypeOrmPinoLoggerOptionsRequired = Required<Omit<TypeOrmPinoLoggerOptions, 'messageFilter'>> & {
+    messageFilter?: TypeOrmPinoLoggerOptions['messageFilter'];
+};
+
 export class TypeOrmPinoLogger implements Logger {
     private readonly logger: PinoLogger;
-    private readonly options: Required<TypeOrmPinoLoggerOptions>;
+    private readonly options: TypeOrmPinoLoggerOptionsRequired;
 
     constructor(pinoLogger: PinoLogger, options: TypeOrmPinoLoggerOptions = {}) {
         this.logger = pinoLogger;
@@ -27,6 +39,10 @@ export class TypeOrmPinoLogger implements Logger {
     logQuery(query: string, parameters?: unknown[], queryRunner?: QueryRunner): void {
         if (!this.options.logQueries) return;
 
+        if (this.options.messageFilter && !this.options.messageFilter(query, 'query')) {
+            return;
+        }
+
         const logData = {
             ...this.options.context,
             query: this.truncateQuery(query),
@@ -43,6 +59,11 @@ export class TypeOrmPinoLogger implements Logger {
      */
     logQueryError(error: string | Error, query: string, parameters?: unknown[], queryRunner?: QueryRunner): void {
         if (!this.options.logQueryErrors) return;
+
+        const errorMessage = error instanceof Error ? error.message : error;
+        if (this.options.messageFilter && !this.options.messageFilter(errorMessage, 'query-error')) {
+            return;
+        }
 
         const logData = {
             ...this.options.context,
@@ -61,6 +82,10 @@ export class TypeOrmPinoLogger implements Logger {
      */
     logQuerySlow(time: number, query: string, parameters?: unknown[], queryRunner?: QueryRunner): void {
         if (!this.options.logSlowQueries || time < this.options.slowQueryThreshold) return;
+
+        if (this.options.messageFilter && !this.options.messageFilter(query, 'slow-query')) {
+            return;
+        }
 
         const logData = {
             ...this.options.context,
@@ -81,6 +106,10 @@ export class TypeOrmPinoLogger implements Logger {
     logSchemaBuild(message: string, queryRunner?: QueryRunner): void {
         if (!this.options.logSchemaOperations) return;
 
+        if (this.options.messageFilter && !this.options.messageFilter(message, 'schema-build')) {
+            return;
+        }
+
         const logData = {
             ...this.options.context,
             message,
@@ -97,6 +126,10 @@ export class TypeOrmPinoLogger implements Logger {
     logMigration(message: string, queryRunner?: QueryRunner): void {
         if (!this.options.logMigrations) return;
 
+        if (this.options.messageFilter && !this.options.messageFilter(message, 'migration')) {
+            return;
+        }
+
         const logData = {
             ...this.options.context,
             message,
@@ -111,6 +144,14 @@ export class TypeOrmPinoLogger implements Logger {
      * Perform logging using given logger.
      */
     log(level: 'log' | 'info' | 'warn' | 'error', message: unknown, queryRunner?: QueryRunner): void {
+        if (
+            this.options.messageFilter &&
+            typeof message === 'string' &&
+            !this.options.messageFilter(message, 'general')
+        ) {
+            return;
+        }
+
         const logData = {
             ...this.options.context,
             message,
