@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: test (pino ${{ matrix.pino }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        pino: ["9.7.0", "10.0.0"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      # Install only the deps we need for type-checking/testing, skipping the
+      # frozen lockfile so we can swap pino versions in the matrix. We then
+      # explicitly install both `pino` (consumer) and the project deps without
+      # locking to the committed bun.lock.
+      - name: Install dependencies
+        run: |
+          bun install pino@${{ matrix.pino }} typeorm@^0.3.25 --no-save
+          bun install
+
+      - name: Verify installed pino version
+        run: node -p "require('pino/package.json').version"
+
+      - name: Type check
+        run: bun run check-types
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Test
+        run: bun test
+
+      - name: Build
+        run: bun run build
