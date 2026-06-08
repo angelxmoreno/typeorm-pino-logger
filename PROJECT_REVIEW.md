@@ -365,11 +365,11 @@ A pragmatic order, smallest first, all reachable in a single afternoon for items
 | 7 | Add README badges block (npm, CI, coverage, license) | #2 (badges) | 5 min | None | ❌ Not started |
 | 8 | Add `CODE_OF_CONDUCT.md` and `SECURITY.md` | #2 (community) | 10 min | None | ❌ Not started |
 | 9 | Resolve filter argument consistency (2.1.1) and tighten `FilterFunction` type (2.1.2) | code quality | 30 min + tests | Low (could be a behavior change for filters on `query-error`) | ❌ Not started |
-| 10 | Add CI matrix on pino v10 to validate #15 | #15 | 10 min | None | ❌ Not started |
-| 11 | Cut `0.2.1` patch release | closes #15 | 5 min | None | ❌ Not started |
+| 10 | Add CI matrix on pino v10 to validate #15 | #15 | 10 min | None | ✅ Done (`.github/workflows/ci.yml`, matrix on pino 9.7.0 + 10.0.0) |
+| 11 | Cut `0.2.1` patch release | closes #15 | 5 min | None | 🟡 Commits ready on `chore/15-pino-v10`; release-it requires npm auth the user will run themselves |
 | 12 | Close #2 with a summary | closes #2 | 5 min | None | ❌ Not started |
 
-Legend: ✅ done · ⏳ in progress · ❌ not started
+Legend: ✅ done · ⏳ in progress · 🟡 ready / awaiting user action · ❌ not started
 
 **Total estimated time:** ~2 hours of focused work to go from current state to "shipped, with CI, badges, Dependabot, both open issues closed."
 
