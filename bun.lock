@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "typeorm-pino-logger",
@@ -18,7 +19,7 @@
         "typescript": "^5.0.0",
       },
       "peerDependencies": {
-        "pino": "^9.7.0",
+        "pino": "^9.7.0 || ^10.0.0",
         "typeorm": "^0.3.25",
       },
     },
