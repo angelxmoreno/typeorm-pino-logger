@@ -68,7 +68,7 @@
     },
     "peerDependencies": {
         "pino": "^9.7.0 || ^10.0.0",
-        "typeorm": "^0.3.25"
+        "typeorm": "^0.3.25 || ^1.0.0"
     },
     "commitlint": {
         "extends": [

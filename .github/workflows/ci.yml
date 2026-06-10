@@ -8,12 +8,13 @@ on:
 
 jobs:
   test:
-    name: test (pino ${{ matrix.pino }})
+    name: test (pino ${{ matrix.pino }}, typeorm ${{ matrix.typeorm }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         pino: ["9.7.0", "10.0.0"]
+        typeorm: ["0.3.25", "1.0.0"]
     steps:
       - uses: actions/checkout@v4
 
@@ -22,17 +23,31 @@ jobs:
         with:
           bun-version: latest
 
-      # Install only the deps we need for type-checking/testing, skipping the
-      # frozen lockfile so we can swap pino versions in the matrix. We then
-      # explicitly install both `pino` (consumer) and the project deps without
-      # locking to the committed bun.lock.
-      - name: Install dependencies
+      # Force the matrix peer versions. A plain `bun install <pkg>@<ver> --no-save`
+      # does NOT pin peerDependencies (bun resolves them from the lockfile/range),
+      # so we inject `overrides` and install without the committed lockfile to
+      # guarantee the matrix versions are the ones actually installed.
+      - name: Pin matrix peer versions
         run: |
-          bun install pino@${{ matrix.pino }} typeorm@^0.3.25 --no-save
-          bun install
+          node -e "const fs=require('fs'); const p=require('./package.json'); p.overrides={...(p.overrides||{}), pino:'${{ matrix.pino }}', typeorm:'${{ matrix.typeorm }}'}; fs.writeFileSync('./package.json', JSON.stringify(p,null,4)+'\n')"
+          rm -f bun.lock
 
-      - name: Verify installed pino version
-        run: node -p "require('pino/package.json').version"
+      - name: Install dependencies
+        run: bun install
+
+      - name: Verify installed peer versions
+        run: |
+          PINO=$(node -e "console.log(JSON.parse(require('fs').readFileSync('node_modules/pino/package.json','utf8')).version)")
+          TYPEORM=$(node -e "console.log(JSON.parse(require('fs').readFileSync('node_modules/typeorm/package.json','utf8')).version)")
+          echo "Installed: pino=$PINO typeorm=$TYPEORM"
+          if [ "$PINO" != "${{ matrix.pino }}" ]; then
+            echo "::error::expected pino ${{ matrix.pino }}, got $PINO"
+            exit 1
+          fi
+          if [ "$TYPEORM" != "${{ matrix.typeorm }}" ]; then
+            echo "::error::expected typeorm ${{ matrix.typeorm }}, got $TYPEORM"
+            exit 1
+          fi
 
       - name: Type check
         run: bun run check-types
