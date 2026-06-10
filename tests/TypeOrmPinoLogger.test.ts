@@ -557,6 +557,33 @@ describe('TypeOrmPinoLogger', () => {
             );
         });
 
+        it('should handle a connection without a name (typeorm 1.0 DataSource)', () => {
+            // typeorm 1.0 removed `name` from DataSource/Connection. The connection still
+            // exposes `options.database`, so the context should omit `connectionName`
+            // without throwing.
+            const mockQueryRunner = {
+                connection: {
+                    options: {
+                        database: 'test_db',
+                    },
+                },
+                isTransactionActive: true,
+            } as unknown as QueryRunner;
+
+            const logger = new TypeOrmPinoLogger(mockLogger, { logQueries: true });
+            logger.logQuery('SELECT * FROM users', undefined, mockQueryRunner);
+
+            expect(mockLogger.debug).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    queryRunner: {
+                        database: 'test_db',
+                        isTransactionActive: true,
+                    },
+                }),
+                'Executing query'
+            );
+        });
+
         it('should handle undefined queryRunner', () => {
             const logger = new TypeOrmPinoLogger(mockLogger, { logQueries: true });
             logger.logQuery('SELECT * FROM users', undefined, undefined);

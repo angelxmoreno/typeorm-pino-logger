@@ -193,8 +193,12 @@ export class TypeOrmPinoLogger implements Logger {
 
         if (queryRunner.connection) {
             const connection = queryRunner.connection;
-            if (connection.name) {
-                context.connectionName = connection.name;
+            // `name` existed on the DataSource/Connection in typeorm 0.3.x but was removed in 1.0.
+            // Read it defensively so this logger compiles against 1.0 while still capturing the
+            // connection name at runtime when used with 0.3.x.
+            const connectionName = (connection as { name?: string }).name;
+            if (connectionName) {
+                context.connectionName = connectionName;
             }
             if (connection.options?.database) {
                 context.database = connection.options.database;
